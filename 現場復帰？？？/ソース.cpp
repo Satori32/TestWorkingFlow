@@ -46,9 +46,9 @@ public:
 	typedef unsigned int Value;
 
 	bool Initalize() {
+		std::cout << "Initialize:System" << std::endl;
 		W.clear();
 		V.clear();
-		std::cout << "Initialize:System" << std::endl;
 		return true;
 	}
 	bool Push(Worker<Value>::SharedWorker In) {
@@ -107,9 +107,12 @@ int main() {
 		TS.Push(C);
 		TS.Push(D);
 		for (std::size_t j = 0; j < 7; j++) {
+			std::cout << "Start Work." << std::endl;
 			for (std::size_t i = 0; i < 3; i++) {
 				TS.Work();
+				std::cout << std::endl;
 			}
+			std::cout << "End Work" << std::endl;
 			TS.Leave();
 		}
 	}
