@@ -23,7 +23,12 @@ public:
 		return true;
 	}
 	bool Work() {
-		std::cout << "Work:" << ++V << std::endl;
+		std::cout << "Work:" << V<<" -> "<<V+1 << std::endl;
+		V++;
+		return true;
+	}
+	bool Eat() {
+		std::cout << "Eat:" << V << std::endl;
 		return true;
 	}
 	bool Leave() {
@@ -64,6 +69,13 @@ public:
 		return true;
 	}
 
+	bool Eat() {
+		for (auto& o : W) {
+			o->Eat();
+		}
+		return true;
+	}
+
 	bool Leave() {
 		for (auto& o : W) {
 			o->Otingin(std::random_device()()%100);
@@ -79,6 +91,7 @@ public:
 		return true;
 	}
 	~TestSystem() {
+		std::cout << std::endl << "Start Destruction." << std::endl << std::endl;
 		ReStore();
 		Leave();
 		Initalize();
@@ -100,20 +113,26 @@ int main() {
 	{
 		TestSystem TS;
 
-		std::cout << "Start Initialize!" << std::endl;
+		std::cout << "Welcome to TestSystem." << std::endl << std::endl;
+
+		std::cout << "Start Initialize!" << std::endl << std::endl;
 		TS.Initalize();
-		std::cout << "Add Worker." << std::endl;
+		std::cout << std::endl << "Add Worker." << std::endl;
 		TS.Push(A);
 		TS.Push(B);
 		TS.Push(C);
 		TS.Push(D);
 		for (std::size_t j = 0; j < 7; j++) {
-			std::cout << "Start Work." << std::endl;
+			std::cout << std::endl << "Start a day." << std::endl << std::endl;
 			for (std::size_t i = 0; i < 3; i++) {
+				std::cout << "Eat One!" << std::endl;
+				TS.Eat();
+				std::cout << std::endl;
+				std::cout<< "Work One!" << std::endl;
 				TS.Work();
 				std::cout << std::endl;
 			}
-			std::cout << "End Work." << std::endl;
+			std::cout << "End a day." << std::endl << std::endl;
 			TS.Leave();
 		}
 	}
