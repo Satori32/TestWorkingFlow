@@ -81,6 +81,7 @@ public:
 	~TestSystem() {
 		ReStore();
 		Leave();
+		Initalize();
 	}
 protected:
 
@@ -101,7 +102,7 @@ int main() {
 
 		std::cout << "Start Initialize!" << std::endl;
 		TS.Initalize();
-		std::cout << "Add Worker" << std::endl;
+		std::cout << "Add Worker." << std::endl;
 		TS.Push(A);
 		TS.Push(B);
 		TS.Push(C);
@@ -112,7 +113,7 @@ int main() {
 				TS.Work();
 				std::cout << std::endl;
 			}
-			std::cout << "End Work" << std::endl;
+			std::cout << "End Work." << std::endl;
 			TS.Leave();
 		}
 	}
